@@ -69,7 +69,7 @@ public class Hero extends Entity{
 
 
     public void update(){
-
+        checkOutOfMap();
         updateHealthBar();
         if(currentHealth<=0) {
             playing.setGameOver(true);
@@ -79,6 +79,11 @@ public class Hero extends Entity{
         updatePos();
         updateAnimation();
         setAnimation();
+    }
+
+    private void checkOutOfMap() {
+        if(hitBox.y>=793)
+            changeHealth(-maxHealth);
     }
 
     private void updateHealthBar() {
@@ -212,12 +217,12 @@ public class Hero extends Entity{
     }
 
     public void changeHealth(int damage){
-        currentHealth+=damage;
-        if(currentHealth<=0) {
-            currentHealth = 0;
-            //gameOver();
-        }else if(currentHealth>=maxHealth)
-            currentHealth=maxHealth;
+            currentHealth += damage;
+            if (currentHealth <= 0) {
+                currentHealth = 0;
+                //gameOver();
+            } else if (currentHealth >= maxHealth)
+                currentHealth = maxHealth;
 
     }
 

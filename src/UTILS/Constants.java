@@ -60,9 +60,9 @@ public class Constants {
                 case GOBLIN:
                     return 65;
                 case GHOST:
-                    return 34;
+                    return 30;
                 case HOUND:
-                    return 51;
+                    return 50;
                 default:
                     return 0;
             }

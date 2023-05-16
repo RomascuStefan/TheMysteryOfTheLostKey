@@ -52,10 +52,11 @@ public class Goblin extends Enemy{
                     newState(MOVE);
                     break;
                 case MOVE:
-                    if(canSeePlayer(lvlData,hero))
+                    if(canSeePlayer(lvlData,hero)) {
                         turnToPlayer(hero);
-                    if(isPlayerInAttackRange(hero))
-                        newState(ATTACK);
+                        if (isPlayerInAttackRange(hero))
+                            newState(ATTACK);
+                    }
                     move(lvlData);
                     break;
                 case ATTACK:

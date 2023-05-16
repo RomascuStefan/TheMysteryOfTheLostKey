@@ -28,7 +28,7 @@ public class LevelManager {
         levelSprite=new BufferedImage[146]; //[16+49+64++16+1]]
         //16-floating platforms
         //49-tiles
-        //1-void
+        //1-void (aer)
         for(int i=0;i<4;i++)
             for(int j=0;j<4;j++)
                     levelSprite[4*i+j]=floatingPlatform.getSubimage(j*512,i*512,512,512);

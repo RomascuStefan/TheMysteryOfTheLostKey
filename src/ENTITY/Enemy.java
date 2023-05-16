@@ -156,6 +156,8 @@ public abstract class Enemy extends Entity{
         attackCheck=true;
     }
 
+
+
     public void resetEnemy() {
         hitBox.x=x;
         hitBox.y=y;
