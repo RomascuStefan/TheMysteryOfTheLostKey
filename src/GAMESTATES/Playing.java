@@ -5,6 +5,7 @@ import ENTITY.Hero;
 import LEVELS.LevelManager;
 import MAIN.Game;
 import UI.GameOverOverlay;
+import UI.PausedOverlay;
 import UTILS.LoadSave;
 
 import java.awt.*;
@@ -35,7 +36,10 @@ public class Playing extends State implements StateMethods{
 
     private BufferedImage bg_image;
 
+    private PausedOverlay pausedOverlay;
     private boolean gameOver=false;
+    private boolean paused=false;
+
 
 
 
@@ -52,6 +56,7 @@ public class Playing extends State implements StateMethods{
         hero = new Hero(150*Game.SCALE,300*Game.SCALE , (int) (150 * Game.SCALE), (int) (150 * Game.SCALE),this);
         hero.loadLvlData(levelManager.getCurrentLvl().getLvlData());
         gameOverOverlay=new GameOverOverlay(this);
+        pausedOverlay=new PausedOverlay(this);
     }
 
     public Hero getHero(){
@@ -64,11 +69,14 @@ public class Playing extends State implements StateMethods{
 
     @Override
     public void update() {
-        if(!gameOver) {
+        if(!gameOver && !paused) {
             levelManager.update();
             hero.update();
             enemyManager.update(levelManager.getCurrentLvl().getLvlData(), hero);
             checkCloseBorder();
+        }
+        else{
+            pausedOverlay.update();
         }
     }
 
@@ -104,13 +112,21 @@ public class Playing extends State implements StateMethods{
 
     @Override
     public void draw(Graphics g) {
-        g.drawImage(bg_image,0,0,Game.GAME_WIDTH,Game.GAME_HEIGHT,null);
+        drawBG(g);
         levelManager.draw(g,xLvlOffset,yLvlOffset);
         hero.render(g,xLvlOffset,yLvlOffset);
         enemyManager.draw(g,xLvlOffset,yLvlOffset);
 
+
         if(gameOver)
             gameOverOverlay.draw(g);
+        else if(paused)
+            pausedOverlay.draw(g);
+    }
+
+    private void drawBG(Graphics g) {
+        BufferedImage bgImgShow=bg_image.getSubimage((int) (5+xLvlOffset*1/8.0f), (int) (2+yLvlOffset*1/8.0f), (int) (Game.GAME_WIDTH+xLvlOffset*1/8.0f+5), (int) (Game.GAME_HEIGHT+yLvlOffset*1/8.0f+2));
+        g.drawImage(bgImgShow,0,0, Game.GAME_WIDTH,Game.GAME_HEIGHT,null);
     }
 
     @Override
@@ -120,17 +136,24 @@ public class Playing extends State implements StateMethods{
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        if(paused)
+            pausedOverlay.mousePressed(e);
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+        if(paused)
+            pausedOverlay.mouseReleased(e);
     }
 
     @Override
     public void mouseMove(MouseEvent e) {
+        if(paused)
+            pausedOverlay.mouseMove(e);
+    }
 
+    public void unpaseGame(){
+        paused=false;
     }
 
     @Override
@@ -165,7 +188,7 @@ public class Playing extends State implements StateMethods{
                     //change heal
                     break;
                 case KeyEvent.VK_ESCAPE:
-                    Gamestate.state = Gamestate.MENU;
+                    paused=!paused;
                     break;
             }
 

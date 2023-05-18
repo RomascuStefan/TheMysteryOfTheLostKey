@@ -76,7 +76,16 @@ public class Constants {
             public static final int BTN_WIDTH=(int)(BTN_WIDTH_DEFAULT* Game.SCALE);
             public static final int BTN_HEIGHT=(int)(BTN_HEIGHT_DEFAULT* Game.SCALE);
         }
+        public static class pausedButtons{
+            public static final int SOUND_SIZE_DEFAULT=42;
+            public static final int SOUND_SIZE=(int)(SOUND_SIZE_DEFAULT* Game.SCALE);
+        }
+        public static class urmButtons{
+            public static final int URM_DEFAULT_SIZE=56;
+            public static final int URM_SIZE= (int) (URM_DEFAULT_SIZE* Game.SCALE*3/4.0f);
+        }
     }
+
 
     public static class playerConstants{
         public static final int die=0;
