@@ -15,7 +15,7 @@ import static UTILS.Constants.enemyConstants.*;
 public class LoadSave {
     public static final String PLAYER_ATLAS="sprite hero.png";
     public static final String LEVEL_ONE_FLOATING_PLATFORMS="Mossy - FloatingPlatforms.png";
-    public static final  String LEVEL_ONE_DATA="map_one_data1.png";
+    public static final  String LEVEL_ONE_DATA="map_one_data.png";
     public static final  String LEVEL_ONE_TILE="Mossy - TileSet.png";
     public static final  String LEVEL_ONE_DECORATIONS="Mossy - Decorations_Hazards.png";
     public static final String LEVEL_ONE_HILLS = "Mossy - MossyHills.png";
