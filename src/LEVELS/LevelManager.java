@@ -35,10 +35,12 @@ public class LevelManager {
         BufferedImage decorations=LoadSave.getSpriteAtlas(LoadSave.LEVEL_ONE_DECORATIONS);
         BufferedImage hills=LoadSave.getSpriteAtlas(LoadSave.LEVEL_ONE_HILLS);
 
-        levelSprite=new BufferedImage[146]; //[16+49+64++16+1]]
-        //16-floating platforms
-        //49-tiles
-        //1-void (aer)
+        levelSprite=new BufferedImage[146]; //[16+49+64+16+1]]
+        //0-15-floating platforms
+        //16-48-tiles
+        //
+        //
+        //145-void (aer)
         for(int i=0;i<4;i++)
             for(int j=0;j<4;j++)
                     levelSprite[4*i+j]=floatingPlatform.getSubimage(j*512,i*512,512,512);
@@ -86,5 +88,6 @@ public class LevelManager {
         game.getPlaying().getEnemyManager().loadEnemies(newLevel);
         game.getPlaying().getHero().loadLvlData(newLevel.getLvlData());
         game.getPlaying().setMaxLvlOffset(newLevel.getMaxLvlOffsetPX(), newLevel.getMaxLvlOffsetPY());
+        game.getPlaying().getObjectManager().loadObjects(newLevel);
     }
 }

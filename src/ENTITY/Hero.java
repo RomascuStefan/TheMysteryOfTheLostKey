@@ -86,8 +86,20 @@ public class Hero extends Entity{
         }
 
         updatePos();
+        if(moving){
+            checkPotionTouched();
+            checkChestTouched();
+        }
         updateAnimation();
         setAnimation();
+    }
+
+    private void checkChestTouched() {
+        playing.checkChestTouched(hitBox);
+    }
+
+    private void checkPotionTouched() {
+        playing.checkPotionTouched(hitBox);
     }
 
     private void checkOutOfMap() {

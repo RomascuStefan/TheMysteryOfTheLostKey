@@ -30,6 +30,11 @@ public class LoadSave {
     public static final String SOUND_BUTTONS = "sound_button.png";
     public static final String URM_BUTTONS = "urm_buttons.png";
     public static final String COMPLETED_IMG = "level complete.png";
+    public static final String SMALL_HEAL = "potion_small.png";
+    public static final String BIG_HEAL = "potion_big.png";
+    public static final String COMMON_CHEST ="chest common.png";
+    public static final String RARE_CHEST ="chest rar.png";
+    public static final String LEGENDAR_CHEST ="chest legendar.png";
 
 
     public static BufferedImage getSpriteAtlas(String fileName){

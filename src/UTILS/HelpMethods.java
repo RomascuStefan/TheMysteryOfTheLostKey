@@ -2,6 +2,8 @@ package UTILS;
 
 import ENTITY.Goblin;
 import MAIN.Game;
+import OBJECTS.Chest;
+import OBJECTS.Potion;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
@@ -9,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static UTILS.Constants.Directions.LEFT;
+import static UTILS.Constants.ObjectConstants.*;
 import static UTILS.Constants.enemyConstants.GOBLIN;
 
 public class HelpMethods {
@@ -150,5 +153,36 @@ public class HelpMethods {
 
             }
         return new Point(1*Game.TILE_SIZE,1*Game.TILE_SIZE);
+    }
+
+    public static ArrayList<Potion> getPotions(BufferedImage img){
+        ArrayList<Potion> list=new ArrayList<>();
+        for(int j=0;j<img.getHeight();j++)
+            for(int i=0;i<img.getWidth();i++) {
+                Color color=new Color(img.getRGB(i,j));
+                int value=color.getBlue();
+                if(value==100)
+                    list.add(new Potion(i*Game.TILE_SIZE,j*Game.TILE_SIZE,SMALL_POTION));
+                else if(value==101)
+                    list.add(new Potion(i*Game.TILE_SIZE,j*Game.TILE_SIZE,BIG_POTION));
+
+            }
+        return list;
+    }
+
+    public static ArrayList<Chest> getChest(BufferedImage img){
+        ArrayList<Chest> list=new ArrayList<>();
+        for(int j=0;j<img.getHeight();j++)
+            for(int i=0;i<img.getWidth();i++) {
+                Color color=new Color(img.getRGB(i,j));
+                int value=color.getBlue();
+                if(value==102)
+                    list.add(new Chest(i*Game.TILE_SIZE,j*Game.TILE_SIZE,COMMON_CHEST));
+                else if(value==103)
+                    list.add(new Chest(i*Game.TILE_SIZE,j*Game.TILE_SIZE,RARE_CHEST));
+                else if(value==104)
+                    list.add(new Chest(i*Game.TILE_SIZE,j*Game.TILE_SIZE,LEGENDAR_CHEST));
+            }
+        return list;
     }
 }
