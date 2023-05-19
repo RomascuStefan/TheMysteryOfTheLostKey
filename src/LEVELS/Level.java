@@ -1,10 +1,54 @@
 package LEVELS;
 
-public class Level {
-    private int [][]lvlData;
+import ENTITY.Goblin;
+import MAIN.Game;
+import UTILS.LoadSave;
 
-    public Level(int [][]lvlData){
-        this.lvlData=lvlData;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import static UTILS.HelpMethods.*;
+
+public class Level {
+    private BufferedImage img;
+    private int [][]lvlData;
+    private ArrayList<Goblin> goblins;
+    private int lvlTilesWide;
+    private int maxTilesOffsetX;
+    private int maxLvlOffsetPX;
+    private int lvlTilesTall;
+    private int maxTilesOffsetY;
+    private int maxLvlOffsetPY;
+    private Point lvlSpawn;
+
+    public Level(BufferedImage img){
+        this.img=img;
+        createLvlData();
+        createEnemy();
+        calculateLvlOffset();
+        calculatePlayerSpawn();
+    }
+
+    private void calculatePlayerSpawn() {
+        lvlSpawn=GetPlayerSpawn(img);
+    }
+
+    private void calculateLvlOffset() {
+        lvlTilesWide=img.getWidth();
+        maxTilesOffsetX=lvlTilesWide-Game.TILE_IN_WIDTH;
+        maxLvlOffsetPX=Game.TILE_SIZE*maxTilesOffsetX;
+
+        lvlTilesTall=Math.max(img.getHeight(),38);
+        maxTilesOffsetY=lvlTilesTall-Game.TILE_IN_HEIGHT;
+        maxLvlOffsetPY=Game.TILE_SIZE*maxTilesOffsetY;
+    }
+
+    private void createEnemy() {
+        goblins=getGoblin(img);
+    }
+
+    private void createLvlData() {
+        lvlData=GetLevelData(img);
     }
 
     public int getSpriteIndex(int x,int y){
@@ -13,5 +57,17 @@ public class Level {
 
     public  int[][]getLvlData(){
         return  lvlData;
+    }
+    public int getMaxLvlOffsetPX(){
+        return maxLvlOffsetPX;
+    }
+    public int getMaxLvlOffsetPY(){
+        return maxLvlOffsetPY;
+    }
+    public Point getPlayerSpawn(){
+        return lvlSpawn;
+    }
+    public ArrayList<Goblin> getGoblins(){
+        return  goblins;
     }
 }

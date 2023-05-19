@@ -66,7 +66,13 @@ public class Hero extends Entity{
         initHitBox(x,y,17* Game.SCALE,30* Game.SCALE);
     }
 
+    public void setSpawn(Point spawn){
+        this.x= spawn.x;
+        this.y=spawn.y;
 
+        hitBox.x=x;
+        hitBox.y=y;
+    }
 
     public void update(){
         checkOutOfMap();

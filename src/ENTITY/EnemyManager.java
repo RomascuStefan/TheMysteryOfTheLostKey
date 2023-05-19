@@ -1,6 +1,7 @@
 package ENTITY;
 
 import GAMESTATES.Playing;
+import LEVELS.Level;
 import MAIN.Game;
 import UTILS.LoadSave;
 
@@ -18,18 +19,22 @@ public class EnemyManager {
     public EnemyManager(Playing playing){
         this.playing=playing;
         loadEnemyImg();
-        addEnemies();
+
     }
 
-    private void addEnemies() {
-        goblinArmy=LoadSave.getGoblin();
-        System.out.println("size of Goblin:" +goblinArmy.size());
+    public   void loadEnemies(Level level) {
+        goblinArmy=level.getGoblins();
     }
 
     public void update(int[][]lvlData,Hero hero){
+        boolean isAnyActive=false;
         for(Goblin gbl : goblinArmy)
-            if(gbl.isActive())
-                gbl.update(lvlData,hero);
+            if(gbl.isActive()) {
+                gbl.update(lvlData, hero);
+                isAnyActive=true;
+            }
+        if(isAnyActive==false)
+            playing.setLevelCompleted(true);
     }
 
     public void draw(Graphics g,int xLvlOffset,int yLvlOffset){

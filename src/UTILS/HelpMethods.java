@@ -1,10 +1,15 @@
 package UTILS;
 
+import ENTITY.Goblin;
 import MAIN.Game;
 
+import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import static UTILS.Constants.Directions.LEFT;
+import static UTILS.Constants.enemyConstants.GOBLIN;
 
 public class HelpMethods {
     public static boolean canMoveHere(float x,float y,float width,float height,int[][]lvlData){
@@ -102,5 +107,48 @@ public class HelpMethods {
 
         else
             return isAllTileWalkable(xTile1,xTile2,tileY,lvlData);
+    }
+
+    public static int[][]GetLevelData(BufferedImage img){
+        int air=145;
+        int[][]LevelData=new int[img.getHeight()][img.getWidth()];
+
+        for(int j=0;j<img.getHeight();j++)
+            for(int i=0;i<img.getWidth();i++) {
+                Color color=new Color(img.getRGB(i,j));
+                int value=color.getRed();
+                if(value>=air)
+                    value=air;
+                LevelData[j][i]=value;
+
+            }
+
+        return  LevelData;
+    }
+
+    public static ArrayList<Goblin> getGoblin(BufferedImage img){
+        ArrayList<Goblin> list=new ArrayList<>();
+        for(int j=0;j<img.getHeight();j++)
+            for(int i=0;i<img.getWidth();i++) {
+                Color color=new Color(img.getRGB(i,j));
+                int value=color.getGreen();
+                if(value==GOBLIN)
+                    list.add(new Goblin( i*Game.TILE_SIZE,j*Game.TILE_SIZE));
+
+            }
+        return list;
+    }
+
+    public static Point GetPlayerSpawn(BufferedImage img) {
+        for (int j = 0; j < img.getHeight(); j++)
+            for (int i = 0; i < img.getWidth(); i++) {
+                Color color = new Color(img.getRGB(i, j));
+                int value = color.getGreen();
+                if (value == 100)
+                    return new Point(i * Game.TILE_SIZE, j * Game.TILE_SIZE);
+
+
+            }
+        return new Point(1*Game.TILE_SIZE,1*Game.TILE_SIZE);
     }
 }
