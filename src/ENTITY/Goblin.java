@@ -18,7 +18,7 @@ public class Goblin extends Enemy{
     public Goblin(float x, float y) {
         super(x, y, GOBLIN_WIDTH, GOBLIN_HEIGHT, GOBLIN);
         aniSpeed=15;
-        initHitBox(x,y,(int)((1/10.0f)*250* Game.SCALE),(int)((1/15.0f)*420*Game.SCALE));
+        initHitBox((int)((1/10.0f)*250),(int)((1/15.0f)*420));
         initAttackBox();
     }
 
@@ -47,7 +47,7 @@ public class Goblin extends Enemy{
         if (inAir)
             updateInAir(lvlData);
         else {
-            switch (enemyState) {
+            switch (state) {
                 case IDLE:
                     newState(MOVE);
                     break;
@@ -75,12 +75,6 @@ public class Goblin extends Enemy{
     }
 
 
-
-
-    public void drawAttackBox(Graphics g,int xLvlOffset,int ylvlOffset){
-        g.setColor(Color.RED);
-        g.drawRect((int) (attackBox.x-xLvlOffset), (int) (attackBox.y-ylvlOffset), (int) attackBox.width, (int) attackBox.height);
-    }
 
     public int flipX(){
         if(walkDir==RIGHT)

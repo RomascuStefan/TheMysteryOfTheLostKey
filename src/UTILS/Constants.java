@@ -4,6 +4,8 @@ import MAIN.Game;
 
 public class Constants {
 
+    public static final float GRAVITY=0.04f* Game.SCALE;
+
     public static class enemyConstants{
         public static final int GOBLIN=1;//pentru green code de la map data
         public static final int GHOST=2;

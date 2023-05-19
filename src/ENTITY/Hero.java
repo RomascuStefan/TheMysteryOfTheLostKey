@@ -4,6 +4,7 @@ import GAMESTATES.Playing;
 import MAIN.Game;
 import UTILS.LoadSave;
 
+import static UTILS.Constants.GRAVITY;
 import static UTILS.Constants.enemyConstants.IDLE;
 import static  UTILS.HelpMethods.canMoveHere;
 
@@ -23,19 +24,17 @@ public class Hero extends Entity{
 
 
 
-    private int animationTick,animationIndex,animationSpeed=12;
-    private  int playerAction=idle;
-    private int playerDir=-1;
+    private int  animationSpeed=12;
+
     private boolean left,up,right;
     private boolean moving=false,aim=false,shoot=false;
-    private float heroSpeed=1.25f * Game.SCALE;
+
 
 //jumping
-    private float airSpeed=0.0f;
-    private float gravity=0.04f* Game.SCALE;
+
     private float jumpSpeed=-2.25f* Game.SCALE;
     private float fallSpeedAfterCollision=0.5f* Game.SCALE;
-    private boolean inAir=false;
+
 
     //HP + STATUS
     private BufferedImage statusBarImg;
@@ -50,8 +49,7 @@ public class Hero extends Entity{
     private int startHealthBarX=(int)(5.5f*Game.SCALE);
     private int startHealthBarY=(int)(3.80f*Game.SCALE);
 
-    private int maxHealth=100;
-    private int currentHealth=maxHealth;
+
     private int healthWidth=healthBarWidth;
 
     private int flipX=0;
@@ -62,8 +60,13 @@ public class Hero extends Entity{
     public Hero(float x, float y, int width, int height,Playing playing) {
         super(x, y,width,height);
         this.playing=playing;
+        this.state=idle;
+        this.maxHealth=100;
+        this.currentHealth=maxHealth;
+        this.walkSpeed=1.25f * Game.SCALE;
+
         loadAnimation();
-        initHitBox(x,y,17* Game.SCALE,30* Game.SCALE);
+        initHitBox(17,30);
     }
 
     public void setSpawn(Point spawn){
@@ -97,14 +100,13 @@ public class Hero extends Entity{
     }
 
     public void render(Graphics g,int xLvlOffset,int yLvlOffset){
-        g.drawImage(heroAnimation[playerAction][animationIndex],
+        g.drawImage(heroAnimation[state][aniIndex],
                 (int) (hitBox.x - xDrawOffset) - xLvlOffset+flipX,
                 (int) (hitBox.y - yDrawOffset - yLvlOffset),
                 width*flipW,
                 height,
                 null);
 
-//        drawHitBox(g,xLvlOffset,yLvlOffset);
         drawUI(g);
     }
 
@@ -116,35 +118,35 @@ public class Hero extends Entity{
 
 
     private void updateAnimation() {
-        animationTick++;
-        if (animationTick >= animationSpeed) {
-            animationTick = 0;
-            animationIndex++;
-            if (animationIndex >= getSpriteSize(playerAction))
-                animationIndex = 0;
+        aniTick++;
+        if (aniTick >= animationSpeed) {
+            aniTick = 0;
+            aniIndex++;
+            if (aniIndex >= getSpriteSize(state))
+                aniIndex = 0;
         }
     }
 
 
     private void setAnimation() {
-        int startAni=playerAction;
+        int startAni=state;
 
         if (moving)
-            playerAction=run;
+            state=run;
         else
-            playerAction=idle;
+            state=idle;
         if(inAir)
             if(airSpeed<0)
-                playerAction=jump;
+                state=jump;
 
-        if(startAni !=playerAction)
+        if(startAni !=state)
             resetAniTick();
 
     }
 
     private void resetAniTick() {
-        animationIndex=0;
-        animationTick=0;
+        aniIndex=0;
+        aniTick=0;
     }
 
     private void updatePos() {
@@ -160,13 +162,13 @@ public class Hero extends Entity{
         float xSpeed=0;
 
         if(left) {
-            xSpeed -= heroSpeed;
+            xSpeed -= walkSpeed;
             flipX=width;
             flipW=-1;
         }
 
         if(right) {
-            xSpeed += heroSpeed;
+            xSpeed += walkSpeed;
             flipX=0;
             flipW=1;
         }
@@ -181,7 +183,7 @@ public class Hero extends Entity{
         if(inAir){
             if(canMoveHere(hitBox.x, hitBox.y+airSpeed,hitBox.width,hitBox.height,lvlData )){
                 hitBox.y+=airSpeed;
-                airSpeed+=gravity;
+                airSpeed+=GRAVITY;
                 updateXpos(xSpeed);
             }
             else {
@@ -297,7 +299,7 @@ public class Hero extends Entity{
         resetBoolean();
         inAir=false;
         moving=false;
-        playerAction=IDLE;
+        state=IDLE;
         currentHealth=maxHealth;
 
         hitBox.x=x;

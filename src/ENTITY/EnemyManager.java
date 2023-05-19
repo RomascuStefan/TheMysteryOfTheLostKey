@@ -46,7 +46,7 @@ public class EnemyManager {
         for (Goblin gbl : goblinArmy)
             if (gbl.isActive()) {
 
-                g.drawImage(GoblinMatrix[gbl.getEnemyState()][gbl.getAniIndex()],
+                g.drawImage(GoblinMatrix[gbl.getState()][gbl.getAniIndex()],
                         (int) (gbl.getHitBox().x) - xLvlOffset - GOBLIN_DRAW_OFFSET_X + gbl.flipX(),
                         (int) (gbl.getHitBox().y) - yLvlOffset - GOBLIN_DRAW_OFFSET_Y,
                         GOBLIN_WIDTH * gbl.flipW(),
