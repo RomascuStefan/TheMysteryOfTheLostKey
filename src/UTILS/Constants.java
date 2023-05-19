@@ -12,6 +12,7 @@ public class Constants {
         public static final int COMMON_CHEST=0;
         public static final int RARE_CHEST=1;
         public static final int LEGENDAR_CHEST=2;
+        public static final int KEY=0;
 
         public static final int SMALL_POTION_VALUE=45;
         public static final int BIG_POTION_VALUE=75;
@@ -27,6 +28,11 @@ public class Constants {
         public static final int  POTION_WIDTH= (int) (POTION_WIDTH_DEFAULT*Game.SCALE*(1/25.0f));
         public static final int POTION_HEIGHT=(int) (POTION_HEIGHT_DEFAULT*Game.SCALE*(1/25.0f));
 
+
+        public static final int KEY_WIDTH_DEFAULT=64;
+        public static final int KEY_HEIGHT_DEFAULT=36;
+        public static final int KEY_WIDTH=(int)(KEY_WIDTH_DEFAULT*Game.SCALE*1/2.0f);
+        public static final int KEY_HEIGHT=(int)(KEY_HEIGHT_DEFAULT*Game.SCALE*1/2.0f);
 
 
     }

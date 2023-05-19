@@ -3,6 +3,7 @@ package LEVELS;
 import ENTITY.Goblin;
 import MAIN.Game;
 import OBJECTS.Chest;
+import OBJECTS.Key;
 import OBJECTS.Potion;
 import UTILS.HelpMethods;
 import UTILS.LoadSave;
@@ -18,6 +19,7 @@ public class Level {
     private ArrayList<Goblin> goblins;
     private ArrayList<Potion> potions;
     private ArrayList<Chest> chests;
+    private ArrayList<Key> keys;
     private int lvlTilesWide;
     private int maxTilesOffsetX;
     private int maxLvlOffsetPX;
@@ -32,6 +34,7 @@ public class Level {
         createEnemy();
         createPotions();
         createChests();
+        createKeys();
         calculateLvlOffset();
         calculatePlayerSpawn();
     }
@@ -42,6 +45,9 @@ public class Level {
 
     private void createPotions() {
         potions=HelpMethods.getPotions(img);
+    }
+    private void createKeys(){
+        keys=HelpMethods.getKey(img);
     }
 
     private void calculatePlayerSpawn() {
@@ -90,5 +96,8 @@ public class Level {
     }
     public ArrayList<Potion> getPotions() {
         return potions;
+    }
+    public ArrayList<Key> getKey() {
+        return keys;
     }
 }

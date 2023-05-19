@@ -16,8 +16,10 @@ import static UTILS.Constants.ObjectConstants.*;
 public class ObjectManager {
     private Playing playing;
     private BufferedImage[] potionImg,chestImg;
+    private BufferedImage keyImg;
     private ArrayList<Potion> potions;
     private ArrayList<Chest> chests;
+    private ArrayList<Key> keys;
 
 
     public ObjectManager(Playing playing){
@@ -31,6 +33,15 @@ public class ObjectManager {
                 if(hitbox.intersects(p.getHitbox())) {
                     p.setActive(false);
                     applyEffect(p);
+                    return;
+                }
+
+        for(Key k:keys)
+            if(k.isActive())
+                if(hitbox.intersects(k.getHitbox())) {
+                    k.setActive(false);
+                    k.collect();
+                    return;
                 }
     }
     public void applyEffect(Potion p){
@@ -56,6 +67,7 @@ public class ObjectManager {
     public void loadObjects(Level newLevel) {
         potions=newLevel.getPotions();
         chests=newLevel.getChests();
+        keys=newLevel.getKey();
     }
 
     private void loadImgs() {
@@ -75,6 +87,10 @@ public class ObjectManager {
         chestImg[0]=common;
         chestImg[1]=rare;
         chestImg[2]=legend;
+
+        keyImg=LoadSave.getSpriteAtlas(LoadSave.KEY);
+
+
     }
 
     public void update(){
@@ -90,6 +106,13 @@ public class ObjectManager {
     public void draw(Graphics g,int xLvlOffset,int yLvlOffset){
         drawPotions(g,xLvlOffset,yLvlOffset);
         drawChests(g,xLvlOffset,yLvlOffset);
+        drawKeys(g,xLvlOffset,yLvlOffset);
+    }
+
+    private void drawKeys(Graphics g, int xLvlOffset, int yLvlOffset) {
+        for(Key k : keys)
+            if(k.isActive())
+                g.drawImage(keyImg,(int) (k.getHitbox().x-k.getxDrawOffset()-xLvlOffset), (int) (k.getHitbox().y-k.getyDrawOffset()-yLvlOffset),KEY_WIDTH,KEY_HEIGHT,null);
     }
 
     private void drawChests(Graphics g, int xLvlOffset, int yLvlOffset) {
@@ -124,5 +147,8 @@ public class ObjectManager {
 
         for(Chest c: chests)
             c.reset();
+
+        for(Key k:keys)
+            k.reset();
     }
 }

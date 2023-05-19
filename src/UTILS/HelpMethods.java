@@ -3,6 +3,7 @@ package UTILS;
 import ENTITY.Goblin;
 import MAIN.Game;
 import OBJECTS.Chest;
+import OBJECTS.Key;
 import OBJECTS.Potion;
 
 import java.awt.*;
@@ -182,6 +183,18 @@ public class HelpMethods {
                     list.add(new Chest(i*Game.TILE_SIZE,j*Game.TILE_SIZE,RARE_CHEST));
                 else if(value==104)
                     list.add(new Chest(i*Game.TILE_SIZE,j*Game.TILE_SIZE,LEGENDAR_CHEST));
+            }
+        return list;
+    }
+
+    public static ArrayList<Key> getKey(BufferedImage img) {
+        ArrayList<Key> list=new ArrayList<>();
+        for(int j=0;j<img.getHeight();j++)
+            for(int i=0;i<img.getWidth();i++) {
+                Color color=new Color(img.getRGB(i,j));
+                int value=color.getBlue();
+                if(value==105)
+                    list.add(new Key(i*Game.TILE_SIZE,j*Game.TILE_SIZE));
             }
         return list;
     }

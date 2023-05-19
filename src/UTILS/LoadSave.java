@@ -35,6 +35,7 @@ public class LoadSave {
     public static final String COMMON_CHEST ="chest common.png";
     public static final String RARE_CHEST ="chest rar.png";
     public static final String LEGENDAR_CHEST ="chest legendar.png";
+    public static final String KEY ="key.png";
 
 
     public static BufferedImage getSpriteAtlas(String fileName){
