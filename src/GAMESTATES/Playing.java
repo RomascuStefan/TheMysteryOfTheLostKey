@@ -152,8 +152,8 @@ public class Playing extends State implements StateMethods{
     }
 
     private void drawBG(Graphics g) {
-//        BufferedImage bgImgShow=bg_image.getSubimage((i nt) (5+xLvlOffset*1/8.0f), (int) (2+yLvlOffset*1/8.0f), (int) (Game.GAME_WIDTH+xLvlOffset*1/8.0f+5), (int) (Game.GAME_HEIGHT+yLvlOffset*1/8.0f+2));
-        g.drawImage(bg_image,0,0,null);
+        BufferedImage bgImgShow=bg_image.getSubimage((int) (xLvlOffset*1/2.0f), (int) (yLvlOffset*1/2.0f), (int) (Game.GAME_WIDTH+xLvlOffset*1/2.0f), (int) (Game.GAME_HEIGHT+yLvlOffset*1/2.0f));
+        g.drawImage(bgImgShow,0,0,null);
     }
 
     @Override
