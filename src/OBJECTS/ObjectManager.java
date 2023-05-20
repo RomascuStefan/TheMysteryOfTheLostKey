@@ -39,7 +39,6 @@ public class ObjectManager {
         for(Key k:keys)
             if(k.isActive())
                 if(hitbox.intersects(k.getHitbox())) {
-                    k.setActive(false);
                     k.collect();
                     return;
                 }
@@ -55,11 +54,14 @@ public class ObjectManager {
             if(c.isActive())
                 if(hitbox.intersects(c.getHitbox()))
                 {
-                    int type=0;
-                    if(c.getObjType()==LEGENDAR_CHEST)
-                        type=1;
+                    if(c.getObjType()==COMMON_CHEST)
+                        potions.add(new Potion((int) c.getHitbox().x, (int) (c.getHitbox().y-150),SMALL_POTION));
+                    else if(c.getObjType()==RARE_CHEST)
+                        potions.add(new Potion((int) c.getHitbox().x, (int) (c.getHitbox().y-150),BIG_POTION));
+                    else if(c.getObjType()==LEGENDAR_CHEST)
+                        keys.add(new Key((int) c.getHitbox().x, (int) (c.getHitbox().y-150)));
+
                     c.setActive(false);
-                    potions.add(new Potion((int) c.getHitbox().x, (int) (c.getHitbox().y-150),type));
                     return;
                 }
     }
@@ -94,6 +96,7 @@ public class ObjectManager {
     }
 
     public void update(){
+
         for(Potion p:potions)
             if(p.isActive())
                 p.update();
@@ -101,6 +104,14 @@ public class ObjectManager {
         for(Chest c: chests)
             if(c.isActive())
                 c.update();
+
+        for(Key k:keys)
+            if(k.isActive())
+                k.update();
+
+        if(Key.getKeyCollected()==Key.getMaxKeyCollected())
+            playing.setLevelCompleted(true);
+
     }
 
     public void draw(Graphics g,int xLvlOffset,int yLvlOffset){

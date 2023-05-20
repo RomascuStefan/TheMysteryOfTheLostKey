@@ -9,7 +9,7 @@ public class Key extends GameObject{
     private static final int maxNumberColected=3;
     public Key(int x, int y) {
         super(x, y, KEY);
-        initHitbox(7,14);
+        initHitbox(35,17);
         xDrawOffset=(int)(3* Game.SCALE);
         yDrawOffset=(int)(-15* Game.SCALE);
     }
@@ -20,6 +20,18 @@ public class Key extends GameObject{
     }
 
     public void collect() {
+        this.active=false;
         numberColected++;
+    }
+
+    public void update() {
+    }
+
+    public static int getKeyCollected(){
+        return numberColected;
+    }
+
+    public static int getMaxKeyCollected(){
+        return maxNumberColected;
     }
 }

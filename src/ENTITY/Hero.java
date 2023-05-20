@@ -86,10 +86,10 @@ public class Hero extends Entity{
         }
 
         updatePos();
-        if(moving){
-            checkPotionTouched();
-            checkChestTouched();
-        }
+
+        checkInteraction();
+        checkChestTouched();
+
         updateAnimation();
         setAnimation();
     }
@@ -98,12 +98,12 @@ public class Hero extends Entity{
         playing.checkChestTouched(hitBox);
     }
 
-    private void checkPotionTouched() {
+    private void checkInteraction() {
         playing.checkPotionTouched(hitBox);
     }
 
     private void checkOutOfMap() {
-        if(hitBox.y>=740)
+        if(hitBox.y>=10000)
             changeHealth(-maxHealth);
     }
 
