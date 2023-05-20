@@ -103,7 +103,7 @@ public class Hero extends Entity{
     }
 
     private void checkOutOfMap() {
-        if(hitBox.y>=10000)
+        if(hitBox.y>=940)
             changeHealth(-maxHealth);
     }
 

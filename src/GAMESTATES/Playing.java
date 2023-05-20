@@ -16,6 +16,8 @@ import java.awt.event.MouseEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import static MAIN.Game.GAME_WIDTH;
+
 public class Playing extends State implements StateMethods{
     private Hero hero;
     private LevelManager levelManager;
@@ -24,8 +26,8 @@ public class Playing extends State implements StateMethods{
 
 
     private int xLvlOffset;
-    private int leftBorder=(int)(0.3*Game.GAME_WIDTH);
-    private int rightBorder=(int)(0.5*Game.GAME_WIDTH);
+    private int leftBorder=(int)(0.3* GAME_WIDTH);
+    private int rightBorder=(int)(0.5* GAME_WIDTH);
     private int maxLvlOffsetPX;
 
     private int yLvlOffset;
@@ -162,7 +164,9 @@ public class Playing extends State implements StateMethods{
 
 
     private void drawBG(Graphics g) {
-        BufferedImage bgImgShow=bg_image.getSubimage((int) (xLvlOffset*1/2.0f), (int) (yLvlOffset*1/2.0f), (int) (Game.GAME_WIDTH+xLvlOffset*1/2.0f), (int) (Game.GAME_HEIGHT+yLvlOffset*1/2.0f));
+        int maxW=Math.min(GAME_WIDTH,bg_image.getWidth());
+        int minW=Math.min(xLvlOffset,bg_image.getWidth() - GAME_WIDTH);
+        BufferedImage bgImgShow=bg_image.getSubimage(minW, (int) (yLvlOffset), maxW, (int) (Game.GAME_HEIGHT));
         g.drawImage(bgImgShow,0,0,null);
     }
 
