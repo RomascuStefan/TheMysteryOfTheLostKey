@@ -72,8 +72,8 @@ public class EnemyManager {
                         GHOST_WIDTH * gh.flipW(),
                         GHOST_HEIGHT,
                         null);
-                gh.drawHitBox(g,xLvlOffset,yLvlOffset);
-                gh.drawAttackBox(g,xLvlOffset,yLvlOffset);
+//                gh.drawHitBox(g,xLvlOffset,yLvlOffset);
+//                gh.drawAttackBox(g,xLvlOffset,yLvlOffset);
             }
     }
 
