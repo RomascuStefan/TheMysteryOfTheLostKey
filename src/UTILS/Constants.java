@@ -39,13 +39,16 @@ public class Constants {
 
     public static class enemyConstants{
         public static final int GOBLIN=1;//pentru green code de la map data
-        public static final int GHOST=2;
-        public static final int HOUND=3;
+        public static final int HOUND=2;
+        public static final int GHOST=3;
+
+
         public static final int IDLE=0;
         public static final int ATTACK=1;
         public static final int TAKE_DAMAGE=2;
         public static final int MOVE=3;
         public static final int DIE=4;
+
 
         public static final int GOBLIN_WIDTH_DEFAULT=1248;
         public static final int GOBLIN_HEIGHT_DEFAULT=848;
@@ -55,6 +58,24 @@ public class Constants {
 
         public static final int GOBLIN_DRAW_OFFSET_X=(int)((1/12.0f)*406*Game.SCALE);
         public static final int GOBLIN_DRAW_OFFSET_Y=(int)((1/7.35f)*381*Game.SCALE);
+
+
+        public static final int HOUND_WIDTH_DEFAULT=256;
+        public static final int HOUND_HEIGHT_DEFAULT=256;
+        public static final int HOUND_WIDTH= (int) (HOUND_WIDTH_DEFAULT*Game.SCALE*(1/3.0f));
+        public static final int HOUND_HEIGHT=(int) (HOUND_HEIGHT_DEFAULT*Game.SCALE*(1/3.0f));
+        public static final int HOUND_DRAW_OFFSET_X=(int)(30*Game.SCALE);
+        public static final int HOUND_DRAW_OFFSET_Y=(int)(62.5f*Game.SCALE);
+
+
+        public static final int GHOST_WIDTH_DEFAULT=45;
+        public static final int GHOST_HEIGHT_DEFAULT=45;
+        public static final int GHOST_WIDTH= (int) (GHOST_WIDTH_DEFAULT*Game.SCALE*(4/5.0f));
+        public static final int GHOST_HEIGHT= (int) (GHOST_HEIGHT_DEFAULT*Game.SCALE*(4/5.0f));
+        public static final int GHOST_DRAW_OFFSET_X=(int)(10*Game.SCALE);
+        public static final int GHOST_DRAW_OFFSET_Y=(int)(20f*Game.SCALE);
+
+
 
         public static int getSpriteAmount(int enemyType,int enemyState){
             switch (enemyType){
@@ -70,6 +91,22 @@ public class Constants {
                             return 6;
                         case DIE:
                             return 9;
+                    }
+                case HOUND:
+                    switch (enemyState){
+                        case IDLE, DIE, TAKE_DAMAGE:
+                            return 3;
+                        case ATTACK, MOVE:
+                            return 5;
+                    }
+                case GHOST:
+                    switch (enemyState){
+                        case IDLE, MOVE:
+                            return 6;
+                        case ATTACK:
+                            return 8;
+                        case TAKE_DAMAGE, DIE:
+                            return 4;
                     }
             }
             return 0;
@@ -93,9 +130,9 @@ public class Constants {
                 case GOBLIN:
                     return 65;
                 case GHOST:
-                    return 30;
+                    return 25;
                 case HOUND:
-                    return 50;
+                    return 30;
                 default:
                     return 0;
             }

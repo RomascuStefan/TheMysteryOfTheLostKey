@@ -1,6 +1,8 @@
 package LEVELS;
 
+import ENTITY.Ghost;
 import ENTITY.Goblin;
+import ENTITY.Hound;
 import MAIN.Game;
 import OBJECTS.Chest;
 import OBJECTS.Key;
@@ -16,7 +18,9 @@ import static UTILS.HelpMethods.*;
 public class Level {
     private BufferedImage img;
     private int [][]lvlData;
+    private ArrayList<Hound> hounds;
     private ArrayList<Goblin> goblins;
+    private ArrayList<Ghost> ghosts;
     private ArrayList<Potion> potions;
     private ArrayList<Chest> chests;
     private ArrayList<Key> keys;
@@ -66,6 +70,8 @@ public class Level {
 
     private void createEnemy() {
         goblins=getGoblin(img);
+        hounds=getHound(img);
+        ghosts=getGhost(img);
     }
 
     private void createLvlData() {
@@ -91,6 +97,9 @@ public class Level {
     public ArrayList<Goblin> getGoblins(){
         return  goblins;
     }
+    public ArrayList<Hound> getHounds(){
+        return  hounds;
+    }
     public ArrayList<Chest> getChests() {
         return chests;
     }
@@ -99,5 +108,8 @@ public class Level {
     }
     public ArrayList<Key> getKey() {
         return keys;
+    }
+
+    public ArrayList<Ghost> getGhosts() {return ghosts;
     }
 }

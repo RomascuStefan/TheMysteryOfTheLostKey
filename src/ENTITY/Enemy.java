@@ -85,8 +85,10 @@ public abstract class Enemy extends Entity{
     protected void turnToPlayer(Hero hero){
         if(hero.hitBox.x>hitBox.x)
             walkDir=RIGHT;
+
         else
             walkDir=LEFT;
+
     }
 
     protected boolean isPlayerInAttackRange(Hero hero){
@@ -98,7 +100,7 @@ public abstract class Enemy extends Entity{
 
     protected boolean isPlayerInRange(Hero hero) {
         int absValue= (int) Math.abs(hero.hitBox.x-hitBox.x);
-        return absValue<=(attackRange*5);
+        return absValue<=(attackRange*3);
     }
 
     protected void newState(int enemyState){
@@ -145,7 +147,7 @@ public abstract class Enemy extends Entity{
 
     protected void checkPlayerHit(Hero hero,Rectangle2D.Float attackBox) {
         if(attackBox.intersects(hero.hitBox))
-            hero.changeHealth(-getEnemyDamage(GOBLIN));
+            hero.changeHealth(-getEnemyDamage(enemyType));
         attackCheck=true;
     }
 

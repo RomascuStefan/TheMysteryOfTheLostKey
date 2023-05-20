@@ -33,10 +33,6 @@ public abstract class Entity {
         hitBox=new Rectangle2D.Float(x,y,(int)(width*Game.SCALE),(int)(height*Game.SCALE));
     }
 
-    protected void updateHitBox(){
-//        hitBox.x=(int)x;
-//        hitBox.y=(int)y;
-    }
 
     public Rectangle2D.Float getHitBox(){
         return  hitBox;
@@ -46,6 +42,7 @@ public abstract class Entity {
         g.setColor(Color.RED);
         g.drawRect((int)(hitBox.x-xLvlOffset), (int)(hitBox.y-yLvlOffset), (int)hitBox.width,(int) hitBox.height);
     }
+
 
     public int getState(){
         return state;

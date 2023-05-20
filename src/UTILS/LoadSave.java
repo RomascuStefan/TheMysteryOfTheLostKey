@@ -37,6 +37,7 @@ public class LoadSave {
     public static final String LEGENDAR_CHEST ="chest legendar.png";
     public static final String KEY ="key.png";
     public static final String HOUND_SPRITE ="houndAtlas.png";
+    public static final String GHOST_SPRITE ="ghostAtlas.png";
 
 
     public static BufferedImage getSpriteAtlas(String fileName){

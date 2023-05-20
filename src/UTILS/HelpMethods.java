@@ -1,6 +1,8 @@
 package UTILS;
 
+import ENTITY.Ghost;
 import ENTITY.Goblin;
+import ENTITY.Hound;
 import MAIN.Game;
 import OBJECTS.Chest;
 import OBJECTS.Key;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 
 import static UTILS.Constants.Directions.LEFT;
 import static UTILS.Constants.ObjectConstants.*;
-import static UTILS.Constants.enemyConstants.GOBLIN;
+import static UTILS.Constants.enemyConstants.*;
 
 public class HelpMethods {
     public static boolean canMoveHere(float x,float y,float width,float height,int[][]lvlData){
@@ -49,6 +51,7 @@ public class HelpMethods {
             return currentTile* Game.TILE_SIZE;
 
         }
+
     }
 
     public static float getEntityYPosUnderAbove(Rectangle2D.Float hitbox, float jumpSpeed){
@@ -74,11 +77,10 @@ public class HelpMethods {
     }
 
     public  static  boolean isFloor(Rectangle2D.Float hitbox,float xSpeed, int[][]lvlData,int dir){
-        if (dir==LEFT)
-            return isSolid(hitbox.x -xSpeed, hitbox.y + hitbox.height + 1, lvlData);
+        if (xSpeed>0)
+            return isSolid(hitbox.x + hitbox.width + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
         else
-            return isSolid(hitbox.x +xSpeed+ hitbox.width*Game.SCALE, hitbox.y + hitbox.height + 1, lvlData);
-
+            return isSolid(hitbox.x + xSpeed, hitbox.y + hitbox.height + 1, lvlData);
     }
 
     public static boolean isTileSolid(int xTile,int yTile,int[][]lvlData){
@@ -138,6 +140,32 @@ public class HelpMethods {
                 int value=color.getGreen();
                 if(value==GOBLIN)
                     list.add(new Goblin( i*Game.TILE_SIZE,j*Game.TILE_SIZE));
+
+            }
+        return list;
+    }
+
+    public static ArrayList<Hound> getHound(BufferedImage img){
+        ArrayList<Hound> list=new ArrayList<>();
+        for(int j=0;j<img.getHeight();j++)
+            for(int i=0;i<img.getWidth();i++) {
+                Color color=new Color(img.getRGB(i,j));
+                int value=color.getGreen();
+                if(value==HOUND)
+                    list.add(new Hound( i*Game.TILE_SIZE,j*Game.TILE_SIZE));
+
+            }
+        return list;
+    }
+
+    public static ArrayList<Ghost> getGhost(BufferedImage img){
+        ArrayList<Ghost> list=new ArrayList<>();
+        for(int j=0;j<img.getHeight();j++)
+            for(int i=0;i<img.getWidth();i++) {
+                Color color=new Color(img.getRGB(i,j));
+                int value=color.getGreen();
+                if(value==GHOST)
+                    list.add(new Ghost( i*Game.TILE_SIZE,(j+1)*Game.TILE_SIZE));
 
             }
         return list;
