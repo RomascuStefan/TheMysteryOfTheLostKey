@@ -1,7 +1,6 @@
 package INPUTS;
 
 import GAMESTATES.Gamestate;
-import GAMESTATES.Leaderboard;
 import MAIN.GamePanel;
 
 import java.awt.event.*;

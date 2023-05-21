@@ -4,7 +4,8 @@ import UTILS.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static UTILS.Constants.UI.pausedButtons.*;
+
+import static UTILS.Constants.UI.pausedButtons.SOUND_SIZE_DEFAULT;
 
 public class SoundButton extends PausedButton{
     private BufferedImage[][] soundImg;

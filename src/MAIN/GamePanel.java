@@ -1,6 +1,5 @@
 package MAIN;
 
-import GAMESTATES.Leaderboard;
 import INPUTS.KeyboardInputs;
 import INPUTS.MouseInputs;
 

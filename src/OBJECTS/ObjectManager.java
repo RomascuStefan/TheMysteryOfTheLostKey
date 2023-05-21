@@ -2,14 +2,12 @@ package OBJECTS;
 
 import GAMESTATES.Playing;
 import LEVELS.Level;
-import MAIN.Game;
 import UTILS.LoadSave;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
 
 import static UTILS.Constants.ObjectConstants.*;
 

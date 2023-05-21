@@ -2,10 +2,11 @@ package UI;
 
 import GAMESTATES.Gamestate;
 import UTILS.LoadSave;
-import static UTILS.Constants.UI.Buttons.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import static UTILS.Constants.UI.Buttons.*;
 
 public class MenuButton {
     private int xPos,yPos,rowIndex,index;

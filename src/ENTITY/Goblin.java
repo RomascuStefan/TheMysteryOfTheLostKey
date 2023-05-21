@@ -1,13 +1,11 @@
 package ENTITY;
+
 import MAIN.Game;
 
-import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-import static UTILS.Constants.Directions.LEFT;
 import static UTILS.Constants.Directions.RIGHT;
 import static UTILS.Constants.enemyConstants.*;
-import static UTILS.HelpMethods.*;
 
 public class Goblin extends Enemy{
 

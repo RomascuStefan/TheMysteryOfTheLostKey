@@ -13,7 +13,6 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
-import static UTILS.Constants.Directions.LEFT;
 import static UTILS.Constants.ObjectConstants.*;
 import static UTILS.Constants.enemyConstants.*;
 

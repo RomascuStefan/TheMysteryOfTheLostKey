@@ -1,14 +1,14 @@
 package ENTITY;
-import  MAIN.Game;
-import UTILS.HelpMethods;
+
+import MAIN.Game;
 
 import java.awt.geom.Rectangle2D;
 
-
+import static UTILS.Constants.Directions.LEFT;
+import static UTILS.Constants.Directions.RIGHT;
 import static UTILS.Constants.GRAVITY;
 import static UTILS.Constants.enemyConstants.*;
 import static UTILS.HelpMethods.*;
-import static UTILS.Constants.Directions.*;
 
 public abstract class Enemy extends Entity{
 

@@ -4,13 +4,11 @@ import GAMESTATES.Playing;
 import MAIN.Game;
 import UTILS.LoadSave;
 
-import static UTILS.Constants.GRAVITY;
-import static UTILS.Constants.enemyConstants.*;
-import static  UTILS.HelpMethods.canMoveHere;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static UTILS.Constants.GRAVITY;
+import static UTILS.Constants.enemyConstants.IDLE;
 import static UTILS.Constants.playerConstants.*;
 import static UTILS.HelpMethods.*;
 

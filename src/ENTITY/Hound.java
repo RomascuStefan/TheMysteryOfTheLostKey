@@ -5,7 +5,7 @@ import MAIN.Game;
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-import static UTILS.Constants.Directions.*;
+import static UTILS.Constants.Directions.RIGHT;
 import static UTILS.Constants.enemyConstants.*;
 
 public class Hound extends Enemy{

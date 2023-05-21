@@ -2,7 +2,6 @@ package GAMESTATES;
 
 import ENTITY.EnemyManager;
 import ENTITY.Hero;
-import LEVELS.Level;
 import LEVELS.LevelManager;
 import MAIN.Game;
 import OBJECTS.ArrowManager;

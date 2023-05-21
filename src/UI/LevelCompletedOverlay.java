@@ -9,7 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static UTILS.Constants.UI.urmButtons.*;
+import static UTILS.Constants.UI.urmButtons.URM_SIZE;
 
 public class LevelCompletedOverlay {
     private  Playing playing;

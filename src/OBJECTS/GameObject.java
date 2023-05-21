@@ -4,7 +4,6 @@ import MAIN.Game;
 
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
-import UTILS.Constants.ObjectConstants.*;
 
 public class GameObject {
     protected int x,y,objType;

@@ -1,19 +1,12 @@
 package UTILS;
 
-import ENTITY.Goblin;
-import MAIN.Game;
-
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
-
-import static UTILS.Constants.enemyConstants.*;
 
 public class LoadSave {
     public static final String PLAYER_ATLAS="sprite hero.png";

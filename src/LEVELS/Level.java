@@ -8,11 +8,11 @@ import OBJECTS.Chest;
 import OBJECTS.Key;
 import OBJECTS.Potion;
 import UTILS.HelpMethods;
-import UTILS.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+
 import static UTILS.HelpMethods.*;
 
 public class Level {

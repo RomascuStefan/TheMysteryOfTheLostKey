@@ -9,8 +9,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-import static UTILS.Constants.UI.pausedButtons.*;
-import static UTILS.Constants.UI.urmButtons.*;
+import static UTILS.Constants.UI.pausedButtons.SOUND_SIZE;
+import static UTILS.Constants.UI.urmButtons.URM_SIZE;
 
 public class PausedOverlay {
     private BufferedImage backgroundImg;
