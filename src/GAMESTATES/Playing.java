@@ -187,7 +187,7 @@ public class Playing extends State implements StateMethods{
     public void mouseClicked(MouseEvent e) {
         if (!gameOver && !paused)
             if (e.getButton() == MouseEvent.BUTTON1 && e.getModifiersEx() == MouseEvent.BUTTON3_DOWN_MASK){
-                //shootEnemy();
+//                shootEnemy();
 
             }
 

@@ -146,11 +146,11 @@ public class Constants {
         public static int getEnemyDamage(int enemyType){
             switch (enemyType){
                 case GOBLIN:
-                    return 65;
+                    return 100;
                 case GHOST:
-                    return 25;
+                    return 60;
                 case HOUND:
-                    return 30;
+                    return 50;
                 default:
                     return 0;
             }
