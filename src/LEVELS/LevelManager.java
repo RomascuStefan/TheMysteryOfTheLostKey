@@ -83,6 +83,7 @@ public class LevelManager {
             lvlIndex=0;
             System.out.println("ai terminat jocul");
             Gamestate.state=Gamestate.MENU;
+            game.save(game.getScore());
         }
         Level newLevel=levels.get(lvlIndex);
         game.getPlaying().getEnemyManager().loadEnemies(newLevel);

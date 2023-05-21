@@ -3,8 +3,9 @@ package MAIN;
 import GAMESTATES.Gamestate;
 import GAMESTATES.Menu;
 import GAMESTATES.Playing;
-import UTILS.LoadSave;
+import UTILS.Database;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class Game implements Runnable{
@@ -19,8 +20,6 @@ public class Game implements Runnable{
     private Menu menu;
 
 
-
-
     public  final static int TILE_DEFAULT_SIZE=32;
     public final static float SCALE=2.25f;
     public final static int TILE_IN_WIDTH=24;
@@ -29,6 +28,9 @@ public class Game implements Runnable{
     public final static int GAME_WIDTH=TILE_SIZE*TILE_IN_WIDTH;
     public final static int GAME_HEIGHT=TILE_SIZE*TILE_IN_HEIGHT;
 
+    private Database db;
+    private String name;
+    private int score=0;
 
 
     public Game() {
@@ -39,16 +41,26 @@ public class Game implements Runnable{
         gamepanel.setFocusable(true);
         gamepanel.requestFocus();
         StartGameLoop();
+
+    }
+
+    private void getName(){
+        name= JOptionPane.showInputDialog("NUMELE JUCATORULUI:");
     }
 
     private void initClass() {
         menu=new Menu(this);
         playing=new Playing(this);
+        db= new Database();
     }
     public void update() {
 
         switch (Gamestate.state){
             case MENU:
+                if(name==null){
+                    getName();
+                }
+                score=0;
                 menu.update();
                 break;
             case PLAYING:
@@ -57,8 +69,14 @@ public class Game implements Runnable{
             case OPTIONS:
                 break;
             case QUIT:
+                closeDB();
                 System.exit(0);
         }
+    }
+
+
+    private void closeDB() {
+        db.close();
     }
 
     public void render(Graphics g){
@@ -107,6 +125,7 @@ public class Game implements Runnable{
                 gamepanel.repaint();
                 frames++;
                 deltaFrames--;
+
             }
 
             if(System.currentTimeMillis()-lastCheck>=1000){
@@ -114,6 +133,7 @@ public class Game implements Runnable{
                 System.out.println("FPS: "+frames+"| UPS: "+updates);
                 frames=0;
                 updates=0;
+                updateScore();
             }
         }
     }
@@ -138,5 +158,16 @@ public class Game implements Runnable{
     }
     public  Playing getPlaying(){
         return  playing;
+    }
+
+    public void save(int score) {
+        db.saveScoreToDatabase(name,score);
+    }
+
+    public int getScore() {
+        return score;
+    }
+    public void updateScore(){
+        score++;
     }
 }

@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="SQLIGHT">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../SQLIGHT" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/../../SQLIGHT" />
+    </SOURCES>
+  </library>
+</component>
