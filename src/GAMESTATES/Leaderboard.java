@@ -46,7 +46,8 @@ public class Leaderboard extends State implements StateMethods{
         g.setFont(new Font("arial",Font.BOLD,50));
         g.drawString("LEADERBOARD",Game.GAME_WIDTH/2 -200,200);
         String champ=db.bestScore();
-        g.drawString(champ,Game.GAME_WIDTH/2-170,Game.GAME_HEIGHT/2);
+        g.setColor(Color.pink);
+        g.drawString(champ,Game.GAME_WIDTH/2-150,Game.GAME_HEIGHT/2);
     }
 
     @Override
