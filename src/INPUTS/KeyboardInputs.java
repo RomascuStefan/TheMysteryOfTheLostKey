@@ -27,6 +27,8 @@ public class KeyboardInputs implements KeyListener {
             case PLAYING:
                 gamepanel.getGame().getPlaying().keyPressed(e);
                 break;
+            case LEADERBOARD:
+                gamepanel.getGame().getLeaderboard().keyPressed(e);
         }
 
     }
