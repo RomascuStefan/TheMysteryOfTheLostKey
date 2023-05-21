@@ -57,17 +57,20 @@ public class Database {
         }
     }
 
-    public String bestScore(){
-        String bestScoreString = "";
+    public String[] bestScore() {
+        String[] bestScores = new String[3];
         try {
             Statement statement = connection.createStatement();
-            String query = "SELECT Name, MIN(Score) AS LowestScore FROM LEADERBOARD";
+            String query = "SELECT Name, Score FROM LEADERBOARD ORDER BY Score ASC LIMIT 3";
             ResultSet resultSet = statement.executeQuery(query);
 
-            if (resultSet.next()) {
+            int index = 0;
+            while (resultSet.next() && index < 3) {
                 String playerName = resultSet.getString("Name");
-                int lowestScore = resultSet.getInt("LowestScore");
-                bestScoreString = playerName + ": " + lowestScore;
+                int score = resultSet.getInt("Score");
+                String scoreEntry = playerName + ": " + score;
+                bestScores[index] = scoreEntry;
+                index++;
             }
 
             resultSet.close();
@@ -75,6 +78,8 @@ public class Database {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return bestScoreString;
+        return bestScores;
     }
+
+
 }
