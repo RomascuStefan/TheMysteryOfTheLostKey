@@ -104,15 +104,19 @@ public class HelpMethods {
         return true;
     }
 
-    public static boolean heroInSight(int[][]lvlData,Rectangle2D.Float hitBox1,Rectangle2D.Float hitBox2,int tileY){
-        int xTile1= (int) (hitBox1.x/Game.TILE_SIZE);
-        int xTile2= (int) (hitBox2.x/Game.TILE_SIZE);
+    public static boolean heroInSight(int[][]lvlData,Rectangle2D.Float enemyBox,Rectangle2D.Float heroBox,int tileY){
+        int firstXTile=(int)(enemyBox.x/Game.TILE_SIZE);
+        int secondXTile;
 
-        if(xTile1<xTile2)
-            return isAllTileWalkable(xTile2,xTile1,tileY,lvlData);
-
+        if(isSolid(heroBox.x,heroBox.y+heroBox.height+1,lvlData))
+            secondXTile= (int) (heroBox.x/Game.TILE_SIZE);
         else
-            return isAllTileWalkable(xTile1,xTile2,tileY,lvlData);
+            secondXTile= (int) ((heroBox.x+heroBox.width)/Game.TILE_SIZE);
+
+        if(firstXTile>secondXTile)
+            return isAllTileWalkable(secondXTile,firstXTile,tileY,lvlData);
+        else
+            return isAllTileWalkable(firstXTile,secondXTile,tileY,lvlData);
     }
 
     public static int[][]GetLevelData(BufferedImage img){

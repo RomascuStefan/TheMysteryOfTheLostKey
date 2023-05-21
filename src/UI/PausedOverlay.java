@@ -93,8 +93,11 @@ public class PausedOverlay {
                 sfxButton.setMuted(!sfxButton.isMuted());
         }
         else if(isInside(e,menuB)){
-            if(menuB.isMousePressed())
-                Gamestate.state=Gamestate.MENU;
+            if(menuB.isMousePressed()) {
+                playing.resetAll();
+                Gamestate.state = Gamestate.MENU;
+                playing.unpaseGame();
+            }
         }
         else if(isInside(e,unpauseB)) {
             if (unpauseB.isMousePressed())

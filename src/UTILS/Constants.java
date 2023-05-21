@@ -7,6 +7,7 @@ public class Constants {
     public static final float GRAVITY=0.04f* Game.SCALE;
 
     public static class ObjectConstants{
+        public static final int ARROW=0;
         public static final int SMALL_POTION=0;
         public static final int BIG_POTION=1;
         public static final int COMMON_CHEST=0;
@@ -14,8 +15,14 @@ public class Constants {
         public static final int LEGENDAR_CHEST=2;
         public static final int KEY=0;
 
+
         public static final int SMALL_POTION_VALUE=45;
         public static final int BIG_POTION_VALUE=75;
+        public static final int POTION_WIDTH_DEFAULT=512;
+        public static final int POTION_HEIGHT_DEFAULT=512;
+        public static final int  POTION_WIDTH= (int) (POTION_WIDTH_DEFAULT*Game.SCALE*(1/25.0f));
+        public static final int POTION_HEIGHT=(int) (POTION_HEIGHT_DEFAULT*Game.SCALE*(1/25.0f));
+
 
         public static final int CHEST_WIDTH_DEFAULT=1604;
         public static final int CHEST_HEIGHT_DEFAULT=1349;
@@ -23,16 +30,27 @@ public class Constants {
         public static final int CHEST_HEIGHT=(int) (CHEST_HEIGHT_DEFAULT*Game.SCALE*(1/45.0f));
 
 
-        public static final int POTION_WIDTH_DEFAULT=512;
-        public static final int POTION_HEIGHT_DEFAULT=512;
-        public static final int  POTION_WIDTH= (int) (POTION_WIDTH_DEFAULT*Game.SCALE*(1/25.0f));
-        public static final int POTION_HEIGHT=(int) (POTION_HEIGHT_DEFAULT*Game.SCALE*(1/25.0f));
 
 
         public static final int KEY_WIDTH_DEFAULT=64;
         public static final int KEY_HEIGHT_DEFAULT=36;
         public static final int KEY_WIDTH=(int)(KEY_WIDTH_DEFAULT*Game.SCALE*1/2.0f);
         public static final int KEY_HEIGHT=(int)(KEY_HEIGHT_DEFAULT*Game.SCALE*1/2.0f);
+
+
+        public static final int ARROW_SPEED=5;
+        public static final int DOWN_ARROW=0;
+        public static final int DOWN_RIGHT_ARROW=1;
+        public static final int RIGHT_ARROW=2;
+        public static final int UP_RIGHT_ARROW=3;
+        public static final int UP_ARROW=4;
+        public static final int UP_LEFT_ARROW=5;
+        public static final int LEFT_ARROW=6;
+        public static final int DOWN_LEFT_ARROW=7;
+        public static final int ARROW_WIDTH_DEFAULT=830;
+        public static final int ARROW_HEIGHT_DEFAULT=830;
+        public static final int ARROW_WIDTH= (int) (ARROW_WIDTH_DEFAULT*Game.SCALE*(1/20.0f));
+        public static final int ARROW_HEIGHT= (int) (ARROW_HEIGHT_DEFAULT*Game.SCALE*(1/20.0f));
 
 
     }

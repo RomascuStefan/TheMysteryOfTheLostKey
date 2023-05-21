@@ -5,11 +5,10 @@ import MAIN.Game;
 import UTILS.LoadSave;
 
 import static UTILS.Constants.GRAVITY;
-import static UTILS.Constants.enemyConstants.IDLE;
+import static UTILS.Constants.enemyConstants.*;
 import static  UTILS.HelpMethods.canMoveHere;
 
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import static UTILS.Constants.playerConstants.*;
@@ -81,7 +80,16 @@ public class Hero extends Entity{
         checkOutOfMap();
         updateHealthBar();
         if(currentHealth<=0) {
-            playing.setGameOver(true);
+            if(state!=die) {
+                state = die;
+                aniTick=0;
+                aniIndex=0;
+                playing.setHeroDying(true);
+            } else if(aniIndex>=getSpriteSize(die)-1 && aniTick>=animationSpeed-1){
+                playing.setGameOver(true);
+            }else{
+                updateAnimation();
+            }
             return;
         }
 

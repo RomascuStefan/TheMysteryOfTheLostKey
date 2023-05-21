@@ -4,6 +4,7 @@ import ENTITY.EnemyManager;
 import ENTITY.Hero;
 import LEVELS.LevelManager;
 import MAIN.Game;
+import OBJECTS.ArrowManager;
 import OBJECTS.ObjectManager;
 import UI.GameOverOverlay;
 import UI.LevelCompletedOverlay;
@@ -22,7 +23,10 @@ public class Playing extends State implements StateMethods{
     private Hero hero;
     private LevelManager levelManager;
     private EnemyManager enemyManager;
+    private ArrowManager arrowManager;
     private UI.GameOverOverlay gameOverOverlay;
+
+    private int xMouse,yMouse;
 
 
     private int xLvlOffset;
@@ -44,6 +48,7 @@ public class Playing extends State implements StateMethods{
     private boolean lvlCompleted=false;
 
     private ObjectManager objectManager;
+    private boolean heroDying=false;
 
 
 
@@ -77,6 +82,7 @@ public class Playing extends State implements StateMethods{
         levelManager = new LevelManager(game);
         enemyManager=new EnemyManager(this);
         objectManager=new ObjectManager(this);
+        arrowManager = new ArrowManager(this);
 
         hero = new Hero(150*Game.SCALE,300*Game.SCALE , (int) (150 * Game.SCALE), (int) (150 * Game.SCALE),this);
         hero.loadLvlData(levelManager.getCurrentLvl().getLvlData());
@@ -103,11 +109,18 @@ public class Playing extends State implements StateMethods{
         else if(lvlCompleted){
             levelCompletedOverlay.update();
         }
-        else if(!gameOver){
+        else if(gameOver){
+            gameOverOverlay.update();
+        }
+        else if(heroDying){
+            hero.update();
+        }
+        else{
             levelManager.update();
             objectManager.update();
             hero.update();
             enemyManager.update(levelManager.getCurrentLvl().getLvlData(), hero);
+            arrowManager.update();
             checkCloseBorder();
         }
 
@@ -119,7 +132,7 @@ public class Playing extends State implements StateMethods{
         levelManager.draw(g,xLvlOffset,yLvlOffset);
         hero.render(g,xLvlOffset,yLvlOffset);
         enemyManager.draw(g,xLvlOffset,yLvlOffset);
-
+        arrowManager.draw(g,xLvlOffset,yLvlOffset);
 
 
         if(gameOver)
@@ -172,6 +185,12 @@ public class Playing extends State implements StateMethods{
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (!gameOver && !paused)
+            if (e.getButton() == MouseEvent.BUTTON1 && e.getModifiersEx() == MouseEvent.BUTTON3_DOWN_MASK){
+                //shootEnemy();
+
+            }
+
 
     }
 
@@ -182,7 +201,9 @@ public class Playing extends State implements StateMethods{
                 pausedOverlay.mousePressed(e);
             else if(lvlCompleted)
                 levelCompletedOverlay.mousePressed(e);
-        }
+
+        }else
+            gameOverOverlay.mousePressed(e);
     }
 
     @Override
@@ -192,7 +213,9 @@ public class Playing extends State implements StateMethods{
                 pausedOverlay.mouseReleased(e);
             else if(lvlCompleted)
                 levelCompletedOverlay.mouseReleased(e);
-        }
+
+        }else
+            gameOverOverlay.mouseReleased(e);
     }
 
     @Override
@@ -202,7 +225,10 @@ public class Playing extends State implements StateMethods{
                 pausedOverlay.mouseMove(e);
             else if(lvlCompleted)
                 levelCompletedOverlay.mouseMove(e);
-        }
+        }else
+            gameOverOverlay.mouseMove(e);
+        xMouse=e.getX();
+        yMouse=e.getY();
     }
 
     public void unpaseGame(){
@@ -280,9 +306,14 @@ public class Playing extends State implements StateMethods{
 
     }
 
+    public void shootEnemy(){
+        arrowManager.newArrow(hero,xMouse,yMouse);
+    }
+
     public void resetAll() {
         gameOver=false;
         lvlCompleted=false;
+        heroDying=false;
         hero.resetAll();
         enemyManager.resetAllEnemies();
         objectManager.resetAllObjects();
@@ -315,5 +346,10 @@ public class Playing extends State implements StateMethods{
 
     public void checkChestTouched(Rectangle2D.Float hitBox) {
         objectManager.checkChestOpen(hitBox);
+    }
+
+
+    public void setHeroDying(boolean heroDying) {
+        this.heroDying=heroDying;
     }
 }
