@@ -94,10 +94,7 @@ public class HelpMethods {
         for (int i = 0; i < xEnd - xStart; i++) {
             if (isSolid(xStart + i, y, lvlData))
                 return false;
-            if (!isSolid(xStart + i, y+1, lvlData))
-                return false;
-
-            if (!isSolid(xStart + i, y-1, lvlData))
+            if (isSolid(xStart + i, y+1, lvlData))
                 return false;
 
         }

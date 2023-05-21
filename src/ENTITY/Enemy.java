@@ -71,14 +71,14 @@ public abstract class Enemy extends Entity{
         changeWalkDir();
     }
 
-    protected boolean canSeePlayer(int[][]lvlData,Hero hero){
-        int heroTileY= (int) (hero.getHitBox().y/Game.TILE_SIZE);
-        if(heroTileY==tileY)
-            if(isPlayerInRange(hero)) {
-                if (heroInSight(lvlData,hitBox,hero.hitBox,tileY))
+    protected boolean canSeePlayer(int[][] lvlData, Hero player) {
+        int playerTileY = (int) (player.getHitBox().y / Game.TILE_SIZE);
+        if (playerTileY == tileY)
+            if (isPlayerInRange(player)) {
+                if (heroInSight(lvlData, hitBox, player.hitBox, tileY))
                     return true;
-
             }
+
         return false;
     }
 
@@ -100,7 +100,7 @@ public abstract class Enemy extends Entity{
 
     protected boolean isPlayerInRange(Hero hero) {
         int absValue= (int) Math.abs(hero.hitBox.x-hitBox.x);
-        return absValue<=(attackRange*3);
+        return absValue<=(attackRange*6);
     }
 
     protected void newState(int enemyState){
