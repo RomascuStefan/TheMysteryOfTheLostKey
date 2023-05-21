@@ -1,6 +1,7 @@
 package MAIN;
 
 import GAMESTATES.Gamestate;
+import GAMESTATES.Leaderboard;
 import GAMESTATES.Menu;
 import GAMESTATES.Playing;
 import UTILS.Database;
@@ -18,6 +19,7 @@ public class Game implements Runnable{
 
     private Playing playing;
     private Menu menu;
+    private Leaderboard leaderboard;
 
 
     public  final static int TILE_DEFAULT_SIZE=32;
@@ -49,24 +51,27 @@ public class Game implements Runnable{
     }
 
     private void initClass() {
+        db= new Database();
         menu=new Menu(this);
         playing=new Playing(this);
-        db= new Database();
+        leaderboard=new Leaderboard(this);
+
     }
     public void update() {
 
         switch (Gamestate.state){
             case MENU:
-                if(name==null){
-                    getName();
-                }
                 score=0;
                 menu.update();
                 break;
             case PLAYING:
+                if(name==null){
+                    getName();
+                }
                 playing.update();
                 break;
-            case OPTIONS:
+            case LEADERBOARD:
+                leaderboard.update();
                 break;
             case QUIT:
                 closeDB();
@@ -87,6 +92,8 @@ public class Game implements Runnable{
             case PLAYING:
                 playing.draw(g);
                 break;
+            case LEADERBOARD:
+                leaderboard.draw(g);
 
         }
 
@@ -133,7 +140,8 @@ public class Game implements Runnable{
                 System.out.println("FPS: "+frames+"| UPS: "+updates);
                 frames=0;
                 updates=0;
-                updateScore();
+                if(!getPlaying().isPaused())
+                    updateScore();
             }
         }
     }
@@ -169,5 +177,11 @@ public class Game implements Runnable{
     }
     public void updateScore(){
         score++;
+    }
+    public Leaderboard getLeaderboard(){
+        return leaderboard;
+    }
+    public Database getDB() {
+        return db;
     }
 }

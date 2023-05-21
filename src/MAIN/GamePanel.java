@@ -1,5 +1,6 @@
 package MAIN;
 
+import GAMESTATES.Leaderboard;
 import INPUTS.KeyboardInputs;
 import INPUTS.MouseInputs;
 
@@ -49,5 +50,7 @@ public class GamePanel extends JPanel {
     public Game getGame(){
         return game;
     }
+
+
 }
 

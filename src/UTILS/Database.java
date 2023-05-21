@@ -54,5 +54,27 @@ public class Database {
         } catch (SQLException e) {
             System.err.println("Failed to close the database connection.");
             e.printStackTrace();
-        }    }
+        }
+    }
+
+    public String bestScore(){
+        String bestScoreString = "";
+        try {
+            Statement statement = connection.createStatement();
+            String query = "SELECT Name, MIN(Score) AS LowestScore FROM LEADERBOARD";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            if (resultSet.next()) {
+                String playerName = resultSet.getString("Name");
+                int lowestScore = resultSet.getInt("LowestScore");
+                bestScoreString = playerName + ": " + lowestScore;
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bestScoreString;
+    }
 }

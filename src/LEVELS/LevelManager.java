@@ -73,9 +73,6 @@ public class LevelManager {
         return levels.get(lvlIndex);
     }
 
-    public int getAmoutLevels(){
-        return levels.size();
-    }
 
     public void  loadNextLevel() {
         lvlIndex++;

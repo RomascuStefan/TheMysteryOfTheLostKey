@@ -1,6 +1,7 @@
 package INPUTS;
 
 import GAMESTATES.Gamestate;
+import GAMESTATES.Leaderboard;
 import MAIN.GamePanel;
 
 import java.awt.event.*;
@@ -17,6 +18,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener, MouseWhe
             case PLAYING:
                 gamepanel.getGame().getPlaying().mouseClicked(e);
                 break;
+            case LEADERBOARD:
+                gamepanel.getGame().getLeaderboard().mouseClicked(e);
+                break;
         }
 
     }
@@ -30,6 +34,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener, MouseWhe
             case PLAYING:
                 gamepanel.getGame().getPlaying().mousePressed(e);
                 break;
+            case LEADERBOARD:
+                gamepanel.getGame().getLeaderboard().mousePressed(e);
+                break;
         }
     }
 
@@ -41,6 +48,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener, MouseWhe
                 break;
             case PLAYING:
                 gamepanel.getGame().getPlaying().mouseReleased(e);
+                break;
+            case LEADERBOARD:
+                gamepanel.getGame().getLeaderboard().mouseReleased(e);
                 break;
         }
     }
@@ -68,6 +78,9 @@ public class MouseInputs implements MouseListener, MouseMotionListener, MouseWhe
                 break;
             case PLAYING:
                 gamepanel.getGame().getPlaying().mouseMove(e);
+                break;
+            case LEADERBOARD:
+                gamepanel.getGame().getLeaderboard().mouseMove(e);
                 break;
         }
     }

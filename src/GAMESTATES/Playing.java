@@ -2,6 +2,7 @@ package GAMESTATES;
 
 import ENTITY.EnemyManager;
 import ENTITY.Hero;
+import LEVELS.Level;
 import LEVELS.LevelManager;
 import MAIN.Game;
 import OBJECTS.ArrowManager;
@@ -347,9 +348,15 @@ public class Playing extends State implements StateMethods{
     public void checkChestTouched(Rectangle2D.Float hitBox) {
         objectManager.checkChestOpen(hitBox);
     }
-
+    public LevelManager getLevelManager(){
+        return levelManager;
+    }
 
     public void setHeroDying(boolean heroDying) {
         this.heroDying=heroDying;
+    }
+
+    public boolean isPaused() {
+        return paused;
     }
 }
