@@ -100,7 +100,16 @@ public abstract class Enemy extends Entity{
 
     protected boolean isPlayerInRange(Hero hero) {
         int absValue= (int) Math.abs(hero.hitBox.x-hitBox.x);
-        return absValue<=(attackRange*6);
+        switch (enemyType){
+            case GOBLIN:
+                return absValue<=(attackRange*3);
+            case HOUND:
+                return absValue<=(attackRange*4);
+            case GHOST:
+                return absValue<=(attackRange*6);
+
+        }
+        return false;
     }
 
     protected void newState(int enemyState){
