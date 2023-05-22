@@ -57,6 +57,10 @@ public class Game implements Runnable{
         leaderboard=new Leaderboard(this);
 
     }
+    private void closeDB() {
+        db.close();
+    }
+
     public void update() {
 
         switch (Gamestate.state){
@@ -77,11 +81,6 @@ public class Game implements Runnable{
                 closeDB();
                 System.exit(0);
         }
-    }
-
-
-    private void closeDB() {
-        db.close();
     }
 
     public void render(Graphics g){

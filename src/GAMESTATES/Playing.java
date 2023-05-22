@@ -132,7 +132,7 @@ public class Playing extends State implements StateMethods{
         levelManager.draw(g,xLvlOffset,yLvlOffset);
         hero.render(g,xLvlOffset,yLvlOffset);
         enemyManager.draw(g,xLvlOffset,yLvlOffset);
-        arrowManager.draw(g,xLvlOffset,yLvlOffset);
+//        arrowManager.draw(g,xLvlOffset,yLvlOffset);
 
 
         if(gameOver)

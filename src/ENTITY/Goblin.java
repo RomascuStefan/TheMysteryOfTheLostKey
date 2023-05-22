@@ -12,6 +12,7 @@ public class Goblin extends Enemy{
     private Rectangle2D.Float attackBox;
     private int attackBoxOffsetX;
     private int attackBoxOffsetY;
+    
 
     public Goblin(float x, float y) {
         super(x, y, GOBLIN_WIDTH, GOBLIN_HEIGHT, GOBLIN);
